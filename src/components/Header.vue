@@ -69,10 +69,7 @@ export default {
         stockPortfolio: this.$store.getters.stockPortfolio,
         stocks: this.$store.getters.stocks
       };
-      axios
-        .put("https://trading-app-c88cc.firebaseio.com/data.json", data)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
+      axios.put("https://trading-app-c88cc.firebaseio.com/data.json", data);
     },
     loadData() {
       this.fetchData();
