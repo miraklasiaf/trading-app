@@ -7,13 +7,13 @@
 <script>
 import Stock from "../components/Stock.vue";
 export default {
-  components: {
-    Stock
-  },
   computed: {
     stocks() {
       return this.$store.getters.stocks;
     }
+  },
+  components: {
+    Stock
   }
 };
 </script>

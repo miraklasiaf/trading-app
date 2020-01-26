@@ -8,14 +8,19 @@
         </h6>
       </template>
 
-      <b-form-input v-model="quantity" placeholder="Quantity" :class="{danger: insufficientFunds}"></b-form-input>
+      <b-form-input
+        type="number"
+        v-model="quantity"
+        placeholder="Quantity"
+        :class="{danger: insufficientFunds}"
+      ></b-form-input>
     </b-card>
     <b-card-footer>
-      <button
-        class="btn btn-success"
+      <b-button
+        variant="success"
         @click="buyStock"
-        :disabled="insufficientFunds || quantity <= 0 || !Number.isInteger(+quantity)"
-      >{{ insufficientFunds ? 'Insufficient Funds' : 'Buy' }}</button>
+        :disabled="insufficientFunds || quantity <= 0"
+      >{{ insufficientFunds ? 'Insufficient Funds' : 'Buy' }}</b-button>
     </b-card-footer>
   </b-col>
 </template>

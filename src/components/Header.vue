@@ -34,7 +34,7 @@
             <b-dropdown-item href="#" @click="loadData">Load Data</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item>Funds: {{ funds }}</b-nav-item>
+          <b-nav-item>Funds: {{ funds | currency }}</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

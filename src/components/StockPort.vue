@@ -9,18 +9,19 @@
       </template>
 
       <b-form-input
+        type="number"
         v-model="quantity"
         placeholder="Quantity"
-        class="{danger: insufficientQuantity}"
+        :class="{danger: insufficientQuantity}"
       ></b-form-input>
     </b-card>
 
     <b-card-footer>
-      <button
-        class="btn btn-success"
+      <b-button
+        variant="success"
         @click="sellStock"
-        :disabled="insufficientQuantity || quantity <= 0 || !Number.isInteger(quantity)"
-      >{{ insufficientQuantity ? 'Not enough' : 'Sell' }}</button>
+        :disabled="insufficientQuantity || quantity <= 0"
+      >{{ insufficientQuantity ? 'Not Enough' : 'Sell' }}</b-button>
     </b-card-footer>
   </b-col>
 </template>
