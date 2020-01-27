@@ -41,14 +41,14 @@ const actions = {
 				returnSecureToken: true
 			})
 			.then((res) => {
-				console.log(res);
+				//console.log(res);
 				commit('authUser', {
 					token: res.data.idToken,
 					userId: res.data.localId
 				});
 				dispatch('storeUser', authData);
-			})
-			.catch((err) => console.log(err));
+			});
+		//.catch((err) => console.log(err));
 	},
 	login({ commit }, authData) {
 		axios
@@ -58,13 +58,13 @@ const actions = {
 				returnSecureToken: true
 			})
 			.then((res) => {
-				console.log(res);
+				//console.log(res);
 				commit('authUser', {
 					token: res.data.idToken,
 					userId: res.data.localId
 				});
-			})
-			.catch((err) => console.log(err));
+			});
+		//.catch((err) => console.log(err));
 		router.replace('/dashboard');
 	},
 	logout({ commit }) {
@@ -75,30 +75,27 @@ const actions = {
 		if (!state.idToken) {
 			return;
 		}
-		globalAxios
-			.post('/users.json' + '?auth=' + state.idToken, userData)
-			.then((res) => console.log(res))
-			.catch((err) => console.log(err));
+		globalAxios.post('/users.json' + '?auth=' + state.idToken, userData);
+		//.then((res) => console.log(res))
+		//.catch((err) => console.log(err));
 	},
 	fetchUser({ commit, state }) {
 		if (!state.idToken) {
 			return;
 		}
-		globalAxios
-			.get('/users.json' + '?auth=' + state.idToken)
-			.then((res) => {
-				console.log(res);
-				const data = res.data;
-				const users = [];
-				for (let key in data) {
-					const user = data[key];
-					user.id = key;
-					users.push(user);
-				}
-				console.log(users);
-				commit('storeUser', users[0]);
-			})
-			.catch((error) => console.log(error));
+		globalAxios.get('/users.json' + '?auth=' + state.idToken).then((res) => {
+			//console.log(res);
+			const data = res.data;
+			const users = [];
+			for (let key in data) {
+				const user = data[key];
+				user.id = key;
+				users.push(user);
+			}
+			//console.log(users);
+			commit('storeUser', users[0]);
+		});
+		//.catch((error) => console.log(error));
 	}
 };
 
