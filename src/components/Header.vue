@@ -80,7 +80,7 @@ export default {
         stockPortfolio: this.$store.getters.stockPortfolio,
         stocks: this.$store.getters.stocks
       };
-      axios.put("/data.json" + "?auth=" + state.idToken, data);
+      axios.put("/data.json" + "?auth=" + auth.state.idToken, data);
     },
     loadData() {
       this.fetchData();
