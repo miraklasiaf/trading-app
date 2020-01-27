@@ -47,8 +47,8 @@ const actions = {
 					userId: res.data.localId
 				});
 				dispatch('storeUser', authData);
-			});
-		//.catch((err) => console.log(err));
+			})
+			.catch((err) => console.log(err));
 	},
 	login({ commit }, authData) {
 		axios
@@ -75,8 +75,7 @@ const actions = {
 		if (!state.idToken) {
 			return;
 		}
-		globalAxios.post('/users.json' + '?auth=' + state.idToken, userData);
-		//.then((res) => console.log(res))
+		globalAxios.post('/users.json' + '?auth=' + state.idToken, userData).then((res) => console.log(res));
 		//.catch((err) => console.log(err));
 	},
 	fetchUser({ commit, state }) {
