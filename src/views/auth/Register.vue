@@ -84,7 +84,7 @@ export default {
         hobbies: this.hobbyInputs.map(hobby => hobby.value),
         terms: this.terms
       };
-      console.log(formData);
+      //console.log(formData);
       this.$store.dispatch("register", formData);
     }
   }

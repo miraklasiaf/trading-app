@@ -9,6 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import BootstrapVue from 'bootstrap-vue';
 
 axios.defaults.baseURL = 'https://trading-app-c88cc.firebaseio.com';
+
 Vue.use(BootstrapVue);
 
 Vue.filter('currency', (value) => {
