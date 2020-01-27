@@ -12,7 +12,7 @@
         type="number"
         v-model="quantity"
         placeholder="Quantity"
-        :class="{danger: insufficientFunds}"
+        :class="{ danger: insufficientFunds }"
       ></b-form-input>
     </b-card>
     <b-card-footer>
@@ -20,7 +20,8 @@
         variant="success"
         @click="buyStock"
         :disabled="insufficientFunds || quantity <= 0"
-      >{{ insufficientFunds ? 'Insufficient Funds' : 'Buy' }}</b-button>
+        >{{ insufficientFunds ? "Insufficient Funds" : "Buy" }}</b-button
+      >
     </b-card-footer>
   </b-col>
 </template>

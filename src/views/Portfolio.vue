@@ -1,6 +1,10 @@
 <template>
   <b-row>
-    <app-stock v-for="(stock, index) in stocks" :key="index" :stock="stock"></app-stock>
+    <app-stock
+      v-for="(stock, index) in stocks"
+      :key="index"
+      :stock="stock"
+    ></app-stock>
   </b-row>
 </template>
 

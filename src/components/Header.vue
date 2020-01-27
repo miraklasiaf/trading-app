@@ -32,13 +32,17 @@
 
           <b-nav-item-dropdown
             @click="isDropDown = !isDropdownOpen"
-            :class="{open: isDropdownOpen}"
+            :class="{ open: isDropdownOpen }"
             text="Save & Load"
             right
             v-if="auth"
           >
-            <b-dropdown-item href="#" @click="saveData" v-if="auth">Save Data</b-dropdown-item>
-            <b-dropdown-item href="#" @click="loadData" v-if="auth">Load Data</b-dropdown-item>
+            <b-dropdown-item href="#" @click="saveData" v-if="auth"
+              >Save Data</b-dropdown-item
+            >
+            <b-dropdown-item href="#" @click="loadData" v-if="auth"
+              >Load Data</b-dropdown-item
+            >
           </b-nav-item-dropdown>
 
           <b-nav-item v-if="auth">Funds: {{ funds | currency }}</b-nav-item>
@@ -80,7 +84,7 @@ export default {
         stockPortfolio: this.$store.getters.stockPortfolio,
         stocks: this.$store.getters.stocks
       };
-      axios.put("/data.json" + "?auth=" + state.idToken, data);
+      axios.put("/data.json" + "?auth=" + auth.state.idToken, data);
     },
     loadData() {
       this.fetchData();

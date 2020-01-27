@@ -83,7 +83,7 @@ const actions = {
 		if (!state.idToken) {
 			return;
 		}
-		globalAxios.get('/users.json' + '?auth=' + auth.state.idToken).then((res) => {
+		globalAxios.get('/users.json' + '?auth=' + state.idToken).then((res) => {
 			//console.log(res);
 			const data = res.data;
 			const users = [];

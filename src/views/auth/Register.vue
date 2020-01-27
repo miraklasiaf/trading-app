@@ -16,7 +16,11 @@
         </div>
         <div class="input">
           <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" v-model="confirmPassword" />
+          <input
+            type="password"
+            id="confirm-password"
+            v-model="confirmPassword"
+          />
         </div>
         <div class="input">
           <label for="country">Country</label>
@@ -31,10 +35,20 @@
           <h3>Add some Hobbies</h3>
           <button @click="onAddHobby" type="button">Add Hobby</button>
           <div class="hobby-list">
-            <div class="input" v-for="(hobbyInput, index) in hobbyInputs" :key="hobbyInput.id">
+            <div
+              class="input"
+              v-for="(hobbyInput, index) in hobbyInputs"
+              :key="hobbyInput.id"
+            >
               <label :for="hobbyInput.id">Hobby #{{ index }}</label>
-              <input type="text" :id="hobbyInput.id" v-model="hobbyInput.value" />
-              <button @click="onDeleteHobby(hobbyInput.id)" type="button">X</button>
+              <input
+                type="text"
+                :id="hobbyInput.id"
+                v-model="hobbyInput.value"
+              />
+              <button @click="onDeleteHobby(hobbyInput.id)" type="button">
+                X
+              </button>
             </div>
           </div>
         </div>

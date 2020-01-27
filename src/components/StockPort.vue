@@ -4,7 +4,9 @@
       <template v-slot:header>
         <h6 class="mb-0">
           {{ stock.name }}
-          <small>(Price: {{ stock.price }} | Quantity: {{ stock.quantity }})</small>
+          <small
+            >(Price: {{ stock.price }} | Quantity: {{ stock.quantity }})</small
+          >
         </h6>
       </template>
 
@@ -12,7 +14,7 @@
         type="number"
         v-model="quantity"
         placeholder="Quantity"
-        :class="{danger: insufficientQuantity}"
+        :class="{ danger: insufficientQuantity }"
       ></b-form-input>
     </b-card>
 
@@ -21,7 +23,8 @@
         variant="success"
         @click="sellStock"
         :disabled="insufficientQuantity || quantity <= 0"
-      >{{ insufficientQuantity ? 'Not Enough' : 'Sell' }}</b-button>
+        >{{ insufficientQuantity ? "Not Enough" : "Sell" }}</b-button
+      >
     </b-card-footer>
   </b-col>
 </template>
