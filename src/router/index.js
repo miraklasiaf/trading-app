@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 
+import AuthRequired from '../utils/AuthRequired';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -27,6 +29,21 @@ const routes = [
 		path: '/stocks',
 		name: 'stocks',
 		component: () => import('../views/Stocks.vue')
+	},
+	{
+		path: '/login',
+		name: 'login',
+		component: () => import('../views/auth/Login.vue')
+	},
+	{
+		path: '/register',
+		name: 'register',
+		component: () => import('../views/auth/Register.vue')
+	},
+	{
+		path: '/dashboard',
+		component: () => import('../views/Dashboard.vue'),
+		beforeEnter: AuthRequired
 	}
 ];
 
