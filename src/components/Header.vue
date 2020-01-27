@@ -51,7 +51,7 @@
 <script>
 import axios from "axios";
 import { mapActions } from "vuex";
-import auth from "./modules/auth.js";
+import auth from "../store/modules/auth.js";
 export default {
   data() {
     return {
