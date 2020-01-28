@@ -30,9 +30,4 @@
 		"prettier": "^1.19.1",
 		"vue-template-compiler": "^2.6.10"
 	},
-	"eslintConfig": {
-		"rules": {
-			"no-console": "off"
-		}
-	}
 }
