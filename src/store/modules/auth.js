@@ -59,8 +59,8 @@ const actions = {
 				localStorage.setItem('expirationDate', expirationDate);
 				dispatch('storeUser', authData);
 				dispatch('setLogoutTimer', res.data.expiresIn);
-			})
-			.catch((err) => return true);
+			});
+		//.catch((err) => console.log(err));
 	},
 	login({ commit, dispatch }, authData) {
 		axios
