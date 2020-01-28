@@ -1,3 +1,9 @@
+import store from '../store';
+
 export default (to, from, next) => {
-  next();
+	if (store.state.idToken) {
+		next();
+	} else {
+		next('/login');
+	}
 };

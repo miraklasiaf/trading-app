@@ -1,7 +1,6 @@
 import axios from '../../axios-auth';
-import globalAxios from 'axios';
-
 import router from '../../router';
+import globalAxios from 'axios';
 
 const state = {
 	idToken: null,
@@ -33,6 +32,12 @@ const mutations = {
 };
 
 const actions = {
+	setLogoutTimer({ commit }, expirationTime) {
+		setTimeout(() => {
+			commit('clearAuthData');
+			router.replace('/login');
+		}, expirationTime * 1000);
+	},
 	register({ commit, dispatch }, authData) {
 		axios
 			.post('/accounts:signUp?key=AIzaSyA0aJ7KUCZVfluPwmoLxZLndTMH4vxLAWU', {
@@ -46,11 +51,18 @@ const actions = {
 					token: res.data.idToken,
 					userId: res.data.localId
 				});
+
+				const now = new Date();
+				const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+				localStorage.setItem('token', res.data.idToken);
+				localStorage.setItem('userId', res.data.localId);
+				localStorage.setItem('expirationDate', expirationDate);
 				dispatch('storeUser', authData);
+				dispatch('setLogoutTimer', res.data.expiresIn);
 			})
 			.catch((err) => console.log(err));
 	},
-	login({ commit }, authData) {
+	login({ commit, dispatch }, authData) {
 		axios
 			.post('/accounts:signInWithPassword?key=AIzaSyA0aJ7KUCZVfluPwmoLxZLndTMH4vxLAWU', {
 				email: authData.email,
@@ -59,16 +71,41 @@ const actions = {
 			})
 			.then((res) => {
 				//console.log(res);
+				const now = new Date();
+				const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+				localStorage.setItem('token', res.data.idToken);
+				localStorage.setItem('userId', res.data.localId);
+				localStorage.setItem('expirationDate', expirationDate);
 				commit('authUser', {
 					token: res.data.idToken,
 					userId: res.data.localId
 				});
+				dispatch('setLogoutTimer', res.data.expiresIn);
 			});
 		//.catch((err) => console.log(err));
 		router.replace('/dashboard');
 	},
+	tryLogin({ commit }) {
+		const token = localStorage.getItem('token');
+		if (!token) {
+			return;
+		}
+		const expirationDate = localStorage.getItem('expirationDate');
+		const now = new Date();
+		if (now >= expirationDate) {
+			return;
+		}
+		const userId = localStorage.getItem('userId');
+		commit('authUser', {
+			token: token,
+			user: userId
+		});
+	},
 	logout({ commit }) {
 		commit('clearAuthData');
+		localStorage.removeItem('expirationDate');
+		localStorage.removeItem('token');
+		localStorage.removeItem('userId');
 		router.replace('/login');
 	},
 	storeUser({ state }, userData) {
