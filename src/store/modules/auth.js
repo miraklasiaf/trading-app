@@ -60,7 +60,7 @@ const actions = {
 				dispatch('storeUser', authData);
 				dispatch('setLogoutTimer', res.data.expiresIn);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => return true);
 	},
 	login({ commit, dispatch }, authData) {
 		axios
